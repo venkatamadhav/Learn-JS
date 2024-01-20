@@ -12,9 +12,9 @@ let johnBMI2 = BMI(85,1.76);
 
 function compareBMI(markBMI,johnBMI){
     if(markBMI > johnBMI){
-        return "Mark BMI is higher than John";
+        return `Mark BMI (${markBMI}) is higher than John (${johnBMI})`;
     }else{
-        return "John BMI is higher than Mark";
+        return `John BMI (${johnBMI}) is higher than Mark (${markBMI})`;
     }
 }
 console.log(`Comparing BMI1: ${compareBMI(markBMI1,johnBMI1)}`);
