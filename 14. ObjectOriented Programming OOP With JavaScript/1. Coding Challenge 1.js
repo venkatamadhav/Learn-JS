@@ -33,3 +33,27 @@ BMW.brake();
 Mercedes.brake();
 BMW.accelerate();
 Mercedes.accelerate();
+
+// Resolved using ES6 Classes
+class Car1 {
+    constructor(company, speed) {
+        this.company = company;
+        this.speed = speed;
+    }
+    accelerate() {
+        this.speed += 10;
+        console.log(`${this.company} is going at ${this.speed} km/h`);
+    }
+    brake() {
+        this.speed -= 5;
+        console.log(`${this.company} is going at ${this.speed} km/h`);
+    }
+}
+const BMW1 = new Car1('BMW', 120);
+const Mercedes1 = new Car1('Mercedes', 95);
+BMW1.accelerate();
+Mercedes1.accelerate();
+BMW1.brake();
+Mercedes1.brake();
+BMW1.accelerate();
+Mercedes1.accelerate();
