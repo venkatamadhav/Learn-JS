@@ -201,7 +201,19 @@ a:visited {
   font-size: 1.4rem;
   transition: all 0.2s;
 }
-
+.popupmessage {
+  background-color: var(--color-dark--2);
+  border-radius: 5px;
+  padding: 1.5rem 2.25rem;
+  margin-bottom: 1.75rem;
+  cursor: pointer;
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: none;
+}
 /* MAP */
 #map {
   flex: 1;

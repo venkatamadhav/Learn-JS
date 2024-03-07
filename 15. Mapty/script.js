@@ -50,7 +50,7 @@ class cycling extends Workout {
 }
 // /////////////////////////////////////////
 class App {
-    #map; #mapEvent; #workouts = [];
+    #map; #mapEvent; #workouts = []; #modify = false;
     constructor() {
         this._getPosition();
         this._getLocalStorage();
@@ -132,6 +132,8 @@ class App {
         }
         this._hideForm();
         this._setLocalStorage();
+        this.#modify === true ? this._displayPopup('Workout Modified Successfully!') : this._displayPopup('Workout Added Successfully!');
+        this.#modify === true ? this.#modify = false : true;
     }
     _renderWorkoutMarker(workout) {
         L.marker(workout.coords, { id: `${workout.id}` }).addTo(this.#map)
@@ -238,6 +240,7 @@ class App {
         inputDistance.value = workout.distance;
         inputDuration.value = workout.duration;
         this._deleteMarker(workoutEl);
+        this.#modify = true;
     }
     _setLocalStorage() {
         localStorage.setItem('workouts', JSON.stringify(this.#workouts));
@@ -264,6 +267,15 @@ class App {
         this._setLocalStorage();
         workoutEl.remove();
         this._deleteMarker(workoutEl);
+        this._displayPopup('Workout Deleted Successfully!');
+    }
+    _displayPopup(message) {
+        popup.textContent = message;
+        popup.style.display = 'block';
+        setTimeout(() => popup.style.display = 'none', 5000);
     }
 }
 const app = new App();
+let popup = document.createElement('div');
+popup.className = "popupmessage";
+document.body.append(popup);
