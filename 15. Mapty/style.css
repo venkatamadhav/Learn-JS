@@ -191,7 +191,8 @@ a:visited {
 .twitter-link:active {
   color: var(--color-light--2);
 }
-.edit_btn {
+.edit_btn,
+.delete_btn {
   background-color: var(--color-dark--2);
   color: var(--color-light--2);
   border: none;

@@ -58,6 +58,7 @@ class App {
         inputType.addEventListener('change', this._toggleElevationField);
         containerWorkouts.addEventListener('click', this._movetoLocation.bind(this));
         containerWorkouts.addEventListener('click', this._editWorkout.bind(this));
+        containerWorkouts.addEventListener('click', this._deleteWorkout.bind(this));
     }
     _getPosition() {
         if (navigator.geolocation)
@@ -148,8 +149,12 @@ class App {
         let html = `
         <li class="workout workout--${workout.type}" data-id="${workout.id}">
           <h2 class="workout__title">${workout.description} 
+            <div>
             <button class="edit_btn btn" data-id1="${workout.id}"> ✏️
             </button>
+            <button class="delete_btn btn" data-id2="${workout.id}"> ❌
+            </button>
+            </div>
           </h2>
           <div class="workout__details">
             <span class="workout__icon">${workout.type === "running" ? '🏃‍♂️' : '🚴‍♀️'}</span>
@@ -250,6 +255,15 @@ class App {
             }
         });
     }
-
+    _deleteWorkout(e) {
+        const deleteBtn = e.target.closest('.delete_btn');
+        if (!deleteBtn) return;
+        const workoutEl = e.target.closest('.workout');
+        if (!workoutEl) return;
+        this.#workouts = this.#workouts.filter(work => work.id !== +e.target.dataset.id2);
+        this._setLocalStorage();
+        workoutEl.remove();
+        this._deleteMarker(workoutEl);
+    }
 }
 const app = new App();
